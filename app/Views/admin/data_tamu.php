@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const instansiSuggestions = document.getElementById('instansiSuggestionsAdmin'); // ID kontainer saran di modal admin
     let isSelectingSuggestionAdmin = false; // Gunakan variabel berbeda untuk menghindari konflik
     const FUZZY_THRESHOLD_ADMIN = 2;
-    function levenshteinDistance(a, b) {
+    function KMP(a, b) {
         if (a.length === 0) return b.length;
         if (b.length === 0) return a.length;
         const matrix = [];
@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const cleanInstansi = lowerInstansi.replace(/[^a-z0-9]/g, '');
 
                 if (cleanInputValue.length > 2) {
-                    const distance = levenshteinDistance(cleanInputValue, cleanInstansi);
+                    const distance = KMP(cleanInputValue, cleanInstansi);
                     if (distance <= FUZZY_THRESHOLD_ADMIN && distance / cleanInputValue.length < 0.5) {
                         matchedSuggestions.push({
                             text: instansi,
